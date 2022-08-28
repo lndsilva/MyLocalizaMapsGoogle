@@ -9,6 +9,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import br.com.local.mylocalizamapsgoogle.databinding.ActivityMapsBinding;
@@ -44,9 +45,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
+        final LatLng eteciaLocation = new LatLng(-23.70254300871582, -46.68932170239807);
+        Marker etecia = mMap.addMarker(
+                new MarkerOptions()
+                        .position(eteciaLocation)
+                        .draggable(true)
+        );
+
         // Add a marker in Sydney and move the camera
         LatLng sydney = new LatLng(-23.70254300871582, -46.68932170239807);
         mMap.addMarker(new MarkerOptions().position(sydney).title("Etec Irmã Agostina"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney,15));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(eteciaLocation,15));
     }
 }
